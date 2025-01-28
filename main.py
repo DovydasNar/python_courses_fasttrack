@@ -137,8 +137,8 @@ def skaiciuoti_sumos_tipa(x: int,y: int, tik_teigiama=False):
 
     """
     res = x + y
-    if tik_teigiama and res < 0:
-        return 0
+    if tik_teigiama:
+        res = max(res, 0)
     return res
 
 print(skaiciuoti_sumos_tipa(5,5))
