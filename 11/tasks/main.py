@@ -1,4 +1,6 @@
 
+#                           1 task
+
 def sudeti_skaicius(*args):
     res = sum(args)
     print(res)
@@ -25,3 +27,7 @@ def pakelti_laipsniu(n, *args):
         print(n ** elem)
 
 pakelti_laipsniu(2, 4, 5, 6)
+
+print('============================================')
+
+
