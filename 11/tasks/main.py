@@ -23,10 +23,34 @@ print('============================================')
 
 
 def pakelti_laipsniu(n, *args):
-    for elem in args:
-        print(n ** elem)
+    return [i ** n for i in args]     #   <- sutrumpintas budas
+    # for elem in args:
+    #     print(n ** elem)
 
-pakelti_laipsniu(2, 4, 5, 6)
+print(pakelti_laipsniu(2, 4, 5, 6))
+
+print('============================================')
+
+#                           2 task
+
+def spausdinti_zinutes(kartai, *args, pabaiga='!'):
+    for i in args:
+        print((i + ' ') * kartai + pabaiga)
+
+spausdinti_zinutes(5, 'Labas, Dovydai', 'kaip sekasi', pabaiga='!')
+
+
+print('============================================')
+
+
+def dauginti_skaicius(n, *args):
+    res = []
+    for numb in args:
+        res.append(n * numb)
+    return res
+
+print(dauginti_skaicius(5, 2, 3, 4, 5))
+
 
 print('============================================')
 
