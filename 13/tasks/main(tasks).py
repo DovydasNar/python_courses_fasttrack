@@ -40,4 +40,24 @@ print(f'Praejo {data_from_today} dienu nuo 2000-01-01')
 
 print('=================================================')
 
+#                                   5 task
 
+# datos_ivestis = input('Iveskite data formatu "YYYY-MM-DD": ')
+
+# try:
+#     objektas = datetime.datetime.strptime(datos_ivestis, "%Y-%m-%d")
+#     print(f'Data ivesta formatu: {objektas}')
+# except ValueError:
+#     print('Ivestas neteisingas formatas')
+
+
+print('=================================================')
+
+#                                   6 task
+
+objektas1 = datetime.datetime(2022, 12,31, 23,59,59)
+print(objektas1)
+
+objektas1_kitu_formatu = objektas1.strftime('%d/%m/%Y %H:%M:%S')
+
+print(objektas1_kitu_formatu)
