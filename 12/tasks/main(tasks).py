@@ -42,23 +42,38 @@ print('===============================')
 #                   task 3
 
 
-while True:
-    ivestis = input('Iveskite skaiciu: ')
-    try:
-        res = int(ivestis)
-        print(res)
-    except ValueError:
-        print(f'Tu gavai ValueError')
+# while True:
+#     ivestis = input('Iveskite skaiciu: ')
+#     try:
+#         res = int(ivestis)
+#         print(res)
+#     except ValueError:
+#         print(f'Tu gavai ValueError')
+#     else:
+#         print(f'Konversija sekminga: {res}')
+#     finally:
+#         print(f'Programa baige savo darba')
+#         break
+
+print('===============================')
+print('===============================')
+
+
+#                   task 4
+
+def tikrinti_amziu(amzius: int):
+    if amzius < 0:
+        raise ValueError('Amzius negali buti neigiamas')
+    elif amzius >= 18:
+        return 'Vartotojas pilnametis'
     else:
-        print(f'Konversija sekminga: {res}')
-    finally:
-        print(f'Programa baige savo darba')
-        break
-
-print('===============================')
-print('===============================')
+        return 'Vartotojas nepilnametis'
 
 
+
+print(tikrinti_amziu(15))
+print(tikrinti_amziu(21))
+print(tikrinti_amziu(-5))
 
 
 

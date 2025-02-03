@@ -17,3 +17,4 @@ import matematika as m
 
 print(m.sudetis(12,18))
 print(m.daugyba(7,6))
+
