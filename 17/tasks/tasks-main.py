@@ -51,6 +51,8 @@ print(f'Studentas: {studentas2.vardas} {studentas2.pavarde}, pazymiu vidurkis su
 
 print('=================================================================================================================================')
 
+# 1.2. task
+
 class BankoSaskaita:
     def __init__(self, savininkas):
         self.savininkas = savininkas
@@ -93,6 +95,54 @@ mano_saskaita.prideti_pinigus(-1000)
 
 
 print('=================================================================================================================================')
+
+
+# 3 task
+
+class Darbuotojas:
+    def __init__(self, vardas, pavarde, atlyginimas):
+        self.vardas = vardas
+        self.pavarde = pavarde
+        self.__atlyginimas = max(atlyginimas, 500)
+
+    @property
+    def atlyginimas(self):
+        return self.__atlyginimas
+
+    @atlyginimas.setter
+    def atlyginimas(self, naujas_atlyginimas):
+        if naujas_atlyginimas >= 500:
+            self.__atlyginimas = naujas_atlyginimas
+        else:
+            print('Atlyginimas negali buti mazesnis nei 500')
+
+    @property
+    def mokesciai(self):
+        return self.__atlyginimas * 0.2
+
+darb1 = Darbuotojas('Dovydas', 'Narvilas', 2000)
+
+print(f'Darbuotojas {darb1.vardas} {darb1.pavarde}, atlyginimas: {darb1.atlyginimas}')
+
+
+darb1.atlyginimas = 1000
+
+print(f'Darbuotojas {darb1.vardas} {darb1.pavarde}, atlyginimas: {darb1.atlyginimas}')
+
+darb1.atlyginimas = 2500
+
+print(f'Darbuotojas {darb1.vardas} {darb1.pavarde}, atlyginimas: {darb1.atlyginimas}, mokesciai nuo atlyginimo: {darb1.mokesciai}')
+
+
+
+
+
+
+
+
+
+
+
 
 
 
