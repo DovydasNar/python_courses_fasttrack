@@ -52,9 +52,9 @@ print(f'Studentas: {studentas2.vardas} {studentas2.pavarde}, pazymiu vidurkis su
 print('=================================================================================================================================')
 
 class BankoSaskaita:
-    def __init__(self, savininkas, pradinis_balansas=0):
+    def __init__(self, savininkas):
         self.savininkas = savininkas
-        self.__balansas = pradinis_balansas
+        self.__balansas = 0
 
     def gauti_balansa(self):
         return self.__balansas
@@ -91,6 +91,8 @@ mano_saskaita.nuskaiciuoti_pinigus(1200)
 
 mano_saskaita.prideti_pinigus(-1000)
 
+
+print('=================================================================================================================================')
 
 
 
