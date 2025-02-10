@@ -71,7 +71,7 @@ class BankoSaskaita:
         else:
             print('Nepakankamas likutis')
 
-mano_saskaita = BankoSaskaita('Dovydas', 2000)
+mano_saskaita = BankoSaskaita('Dovydas')
 
 print(f'Saskaita: {mano_saskaita.savininkas}, balansas: {mano_saskaita.gauti_balansa()}')
 
