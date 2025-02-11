@@ -71,3 +71,37 @@ print('-' * 30)
 
 naujausias = Automobilis.naujausias_modelis(autos)
 print(naujausias)
+
+
+
+print('==================================')
+
+# 1. Funkcijos kaip Pirmos Klasės Objektai
+
+def prideti_zenkliuka(tekstas):
+    return tekstas + '*'
+
+
+def apversti_teksta(tekstas):
+    return tekstas[::-1]
+
+
+
+def apdoroti_teksta(tekstas, funkcija=None):
+    if funkcija:
+        return funkcija(tekstas)
+    return tekstas.lower()
+
+
+
+def keli_apdorojimai(tekstas, *funkcijos):
+    for funkcija in funkcijos:
+        tekstas = funkcija(tekstas)
+        return tekstas
+
+tekstas = 'Hello World!'
+
+print(apdoroti_teksta(tekstas))
+print(apdoroti_teksta(tekstas, prideti_zenkliuka))
+print(apdoroti_teksta(tekstas, apversti_teksta))
+
