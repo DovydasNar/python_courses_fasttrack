@@ -104,4 +104,74 @@ tekstas = 'Hello World!'
 print(apdoroti_teksta(tekstas))
 print(apdoroti_teksta(tekstas, prideti_zenkliuka))
 print(apdoroti_teksta(tekstas, apversti_teksta))
+print(keli_apdorojimai(tekstas, apdoroti_teksta, prideti_zenkliuka, apversti_teksta, ))
+
+
+print('==================================')
+
+# 3 task
+
+def sekimo_dekoratorius(funkcija):
+    def vidine_funkcija(*args, **kwargs):
+        print(f'Vykdoma funkcija {funkcija.__name__}')
+
+        rezultatas = funkcija(*args, **kwargs)
+
+        print('Funkcija baigta.')
+
+        return rezultatas
+
+    return vidine_funkcija
+
+
+
+@sekimo_dekoratorius
+def dauginti(a,b):
+    return a * b
+
+
+@sekimo_dekoratorius
+def dalinti(a,b):
+    if b == 0:
+        return 'Klaida, dalyba is 0 negalima'
+    return a / b
+
+
+print(dalinti(5,5))
+print(dauginti(5,5))
+
+print('==================================')
+
+class SkaiciuSekosIteratorius:
+    def __init__(self, pradinis, galinis):
+        self.pradinis = pradinis
+        self.galinis = galinis
+        self.current = pradinis
+
+    def __iter__(self):
+        self.current = self.pradinis
+        return self
+
+    def __next__(self):
+        if self.current > self.galinis:
+            raise StopIteration
+        value = self.current
+        self.current += 2
+        return value
+
+    def atgaline_seka(self):
+        return list(range(self.galinis, self.pradinis -1, -2))
+
+
+iteratorius = SkaiciuSekosIteratorius(1, 10)
+
+for skaicius in iteratorius:
+    print(skaicius)
+
+print('============================================================')
+
+print(iteratorius.atgaline_seka())
+
+
+
 
