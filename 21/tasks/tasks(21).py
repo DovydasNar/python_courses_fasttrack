@@ -37,19 +37,25 @@ def iterpti_nauja_mokini():
     vardas = input('Iveskite mokinio varda: ')
     pavarde = input('Iveskite mokinio pavarde: ')
     klase = int(input('Iveskite mokinio klase: '))
-    naujas_mokinys = Mokinys(vardas=vardas, pavarde=pavarde, klase=klase)
-    session.add(naujas_mokinys)
-    session.commit()
-    print(f'Mokinys {vardas} {pavarde} pridetas i sarasa. ')
+    if not session.query(Mokinys).filter_by(vardas=vardas, pavarde=pavarde, klase=klase).first():
+         naujas_mokinys = Mokinys(vardas=vardas, pavarde=pavarde, klase=klase)
+         session.add(naujas_mokinys)
+         session.commit()
+         print(f'Mokinys {vardas} {pavarde} pridetas i sarasa. ')
+    else:
+        print('Mokinys jau egzistuoja.')
 
 def iterpti_nauja_mokytoja():
     vardas = input('Iveskite mokytojo varda: ')
     pavarde = input('Iveskite mokytojo pavarde: ')
     dalykas = input('Iveskite mokytojo destoma dalyka: ')
-    naujas_mokytojas = Mokytojas(vardas=vardas, pavarde=pavarde, dalykas=dalykas)
-    session.add(naujas_mokytojas)
-    session.commit()
-    print(f'Mokytojas {vardas} {pavarde} pridetas i sarasa. ')
+    if not session.query(Mokytojas).filter_by(vardas=vardas, pavarde=pavarde, dalykas=dalykas).first():
+         naujas_mokytojas = Mokytojas(vardas=vardas, pavarde=pavarde, dalykas=dalykas)
+         session.add(naujas_mokytojas)
+         session.commit()
+         print(f'Mokytojas {vardas} {pavarde} pridetas i sarasa. ')
+    else:
+        print('Mokytojas jau egzistuoja.')
 
 def isvesti_visus_mokinius():
     mokiniai = session.query(Mokinys).all()
