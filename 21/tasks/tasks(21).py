@@ -126,7 +126,7 @@ def rasti_mokini_pagal_varda():
 
 
 def rasti_mokini_pagal_pirma_raide():
-    mokiniai = session.query(Mokinys).filter(Mokinys.pavarde.like('P%')).all()
+    mokiniai = session.query(Mokinys).filter(Mokinys.pavarde.ilike('P%')).all()
     if mokiniai:
         for mokinys in mokiniai:
             print(f'{mokinys.vardas} {mokinys.pavarde} klase: {mokinys.klase}')
@@ -135,7 +135,7 @@ def rasti_mokini_pagal_pirma_raide():
 
 
 def rasti_mokytoja_pagal_paskutine_raide():
-    mokytojai = session.query(Mokytojas).filter(Mokytojas.pavarde.like('%s')).all()
+    mokytojai = session.query(Mokytojas).filter(Mokytojas.pavarde.ilike('%s')).all()
     if mokytojai:
         for mokytojas in mokytojai:
             print(f'{mokytojas.vardas} {mokytojas.pavarde} destomas dalykas: {mokytojas.dalykas}')
