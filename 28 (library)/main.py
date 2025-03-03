@@ -54,7 +54,10 @@ session = Session()
 def add_book():
     title = sanitize_input(input('Iveskite knygos pavadinima: '))
     author = sanitize_input(input('Iveskite knygos autoriu: '))
-    year_published = int(input('Iveskite knygos isleidimo metus: '))
+    year_published = input('Iveskite knygos isleidimo metus: ')
+    if not year_published.isdigit():
+        print('Klaida, knygos metai turi buti skaiciai!')
+        return
     book = Book(title=title, author=author, year_published=year_published)
     session.add(book)
     session.commit()
@@ -74,8 +77,11 @@ def add_reader():
 
 
 def borrow_book():
-    book_id = int(input('Iveskite knygos ID: '))
-    reader_id = int(input('Iveskite vartotojo ID: '))
+    book_id = input('Iveskite knygos ID: ')
+    reader_id = input('Iveskite vartotojo ID: ')
+    if not book_id.isdigit() or not reader_id.isdigit():
+        print('Klaida, skaitytojo ir knygos ID turi buti skaiciai!')
+        return
     book = session.query(Book).filter_by(id=book_id, available=True).first()
     if book:
         borrowed_book = BorrowedBook(book_id=book_id, reader_id=reader_id)
@@ -87,7 +93,10 @@ def borrow_book():
         print('Klaida, knyga jau pasiskolinta arba tokia knyga neegzistuoja.')
 
 def update_book():
-    book_id = int(input('Iveskite knygos ID: '))
+    book_id = input('Iveskite knygos ID: ')
+    if not book_id.isdigit():
+        print('Klaida, knygos ID turi buti skaiciai!')
+        return
     book = session.query(Book).filter_by(id=book_id).first()
     if book:
         book.title = sanitize_input(input('Iveskite nauja knygos pavadinima: '))
@@ -98,7 +107,10 @@ def update_book():
         print('Klaida! Knyga atnaujinta nesekmingai')
 
 def delete_book():
-    book_id = int(input('Iveskite knygos ID: '))
+    book_id = input('Iveskite knygos ID: ')
+    if not book_id.isdigit():
+        print('Klaida, knygos ID turi buti skaiciai!')
+        return
     book = session.query(Book).filter_by(id=book_id).first()
     if book:
         session.delete(book)
@@ -108,7 +120,9 @@ def delete_book():
         print('Klaida salinant knyga.')
 
 def delete_reader():
-    reader_id = int(input('Iveskite vartotojo ID: '))
+    reader_id = input('Iveskite vartotojo ID: ')
+    if not reader_id.isdigit():
+        print('Klaida, skaitytojo ID turi buti skaiciai.')
     reader = session.query(Reader).filter_by(id=reader_id).first()
     if reader:
         session.delete(reader)
@@ -125,11 +139,43 @@ def show_books():
     else:
         print('Knygu lentyna yra tuscia')
 
+def show_readers():
+    readers = session.query(Reader).all()
+    if readers:
+        for reader in readers:
+            print(f'ID: {reader.id}, vardas: {reader.name}, el. pastas: {reader.email}')
+        else:
+            print('Skaitytoju nera.')
+
 
 def show_borrowed_books():
     borrowed_books = session.query(BorrowedBook).all()
     for borrowed in borrowed_books:
         print(f'Knyga: {borrowed.book.title}, pas skaitytoja {borrowed.reader.name}, paskolinta iki {borrowed.return_due_date}')
+
+def time_borrowed_book():
+    book_id = sanitize_input(input('Iveskite knygos ID: '))
+    if not book_id.isdigit():
+        print('Klaida, knygos ID turi buti skaiciai!')
+        return
+    record = session.query(BorrowedBook).filter(BorrowedBook.book_id == int(book_id)).first()
+    if record:
+        days_borrowed = (datetime.now() - record.borrowed_at).days
+        print(f'Knyga jau paskolinta {days_borrowed} dienu.')
+    else:
+        print('Knyga nera paskolinta.')
+
+
+def reader_books_history():
+    reader_id = sanitize_input(input('Iveskite skaitytojo ID: '))
+    if not reader_id.isdigit():
+        print('Klaida, skaitytojo ID turi buti skaiciai.')
+        return
+    records = session.query(BorrowedBook).filter(BorrowedBook.reader_id == int(reader_id)).all()
+    for record in records:
+        print(f'Knyga: {record.book.title}, paskolinta: {record.borrowed_at} iki {record.return_due_date}')
+
+
 
 
 while True:
@@ -143,7 +189,10 @@ while True:
     print('5 - Pasalinti knyga')
     print('6 - Pasalinti skaitytoja')
     print('7 - Rodyti visas knygas')
-    print('8 - Rodyti paskolintas knygas')
+    print('8 - Rodyti visus skaitytojus')
+    print('9 - Rodyti paskolintas knygas')
+    print('10 - Rodyti kiek laiko paskolinta knyga')
+    print('11 - Rodyti skaitytojo skolinimosi istorija')
     print('0 - Iseiti is programos')
 
     print('========================')
@@ -164,7 +213,13 @@ while True:
     elif choice == '7':
         show_books()
     elif choice == '8':
+        show_readers()
+    elif choice == '9':
         show_borrowed_books()
+    elif choice == '10':
+        time_borrowed_book()
+    elif choice == '11':
+        reader_books_history()
     elif choice == '0':
         print('Programa baigia savo darba')
         break
