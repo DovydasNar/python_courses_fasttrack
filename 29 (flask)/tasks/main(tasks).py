@@ -39,7 +39,12 @@ def main():
     return '<h1>Mano Flask puslapis</h1>' \
            '<p>Tai yra pagrindinis puslapis</p>' \
            '<p><a href="/apie">Apie</p>' \
-           '<p><a href="/">Home</p>'
+           '<p><a href="/">Home</p>' \
+           '<p><a href="/vartotojas/Vardas">Vartotojo puslapis</p>' \
+           '<p><a href="/skaicius/20">Skaiciaus puslapis</p>'
+
+
+
 
 
 if __name__ == '__main__':
