@@ -29,6 +29,7 @@ Base.metadata.create_all(engine)
 
 
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import func
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -142,6 +143,23 @@ def rasti_mokytoja_pagal_paskutine_raide():
     else:
         print('Mokytojas, kurio pavarde baigiasi s nerasta.')
 
+def isvesti_mokinius_pagal_klase():
+    mokiniai = session.query(Mokinys).order_by(Mokinys.klase).all()
+    if mokiniai:
+        print('Mokiniu sarasas pagal klase.')
+        for mokinys in mokiniai:
+            print(f'{mokinys.vardas} {mokinys.pavarde}, klase: {mokinys.klase}')
+    else:
+        print('Mokiniu nerasta.')
+
+def mokiniu_skaicius_klaseje():
+    rezultatas = session.query(Mokinys.klase, func.count(Mokinys.id)).group_by(Mokinys.klase).all()
+    if rezultatas:
+        print('Mokiniu skaicius kiekvienoje klaseje.')
+        for klase, mokiniu_sk in rezultatas:
+            print(f'Klaseje: {klase} mokiniu skaicius: {mokiniu_sk}')
+    else:
+        print('Mokiniu nerasta.')
 
 
 
@@ -157,7 +175,9 @@ while True:
     print('8 - Rasti mokini pagal varda')
     print('9 - Rasti mokini kurio pavarde prasideda is P raides')
     print('10 - Rasti mokytoja kurio pavarde baigiasi s raide')
-    print('11 - Iseiti is programos')
+    print('11 - Rikiuoti mokinius pagal klases')
+    print('12 - Mokiniu skaicius pagal klase')
+    print('13 - Iseiti is programos')
 
     pasirinkimas = input('Iveskite skaiciu: ')
     if pasirinkimas == '1':
@@ -181,6 +201,10 @@ while True:
     elif pasirinkimas == '10':
         rasti_mokytoja_pagal_paskutine_raide()
     elif pasirinkimas == '11':
+        isvesti_mokinius_pagal_klase()
+    elif pasirinkimas == '12':
+        mokiniu_skaicius_klaseje()
+    elif pasirinkimas == '13':
         print('Programa baigia savo darba')
         break
     else:

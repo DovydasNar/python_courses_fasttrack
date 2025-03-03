@@ -57,6 +57,8 @@ def users():
     users_list = ['Dovydas', 'Paulius', 'Jonas', 'Petras', 'Antanas', 'Algirdas']
     return render_template('vartotojai.html', users_for_template=users_list)
 
+# # ===========================================================================================
+
 
 if __name__ == '__main__':
     app.run()

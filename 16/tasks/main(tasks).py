@@ -24,3 +24,5 @@ dog.lot()
 dog.judeti()
 
 
+
+

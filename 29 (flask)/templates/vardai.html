@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Vardu sarasas:</p>
+<p>{{names_for_template}}</p>
+<p>Vardai po viena:</p>
+{% for elem in names_for_template %}
+<p>{{ elem }}</p>
+{% endfor %}
+<p><a href="/">Home</a></p>
+</body>
+</html>
