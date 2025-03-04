@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prisijungti</title>
+</head>
+<body>
+<h2>Prisijungimas</h2> <br> <br>
+<form action="/prisijungti" method="post">
+    <label for="username">Vartotojo vardas:</label> <br>
+    <input type="text" id="username" name="username", placeholder="Iveskite varda" required>
+    <input type="submit" value="Submit">
+</form>
+
+{%  if username  %}
+   <p>Prisijungete kaip: <strong>{{username}}</strong></p>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registracija</title>
+</head>
+<body>
+<h2>Registracija</h2> <br> <br>
+    <form action="/registracija" method="post">
+    <label for="username">Vartotojo vardas: </label> <br>
+    <input type="text" name="username" id="username"  placeholder='Vardas'>
+    <br> <br>
+    <label for="password">Iveskite slaptazodi: </label> <br>
+    <input type="text" name="password" id="password"  placeholder="Slaptazodis" >
+    <br> <br>
+    <label for="password2">Pakartokite slaptazodi:</label> <br>
+    <input type="text" id="password2" name="password2" placeholder="Slaptazodis">
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>
+
+{% if error %}
+<p style="color: red"> {{error}} </p>
+{% endif %}
+
+{% if success %}
+<p style="color: green"> {{success}} </p>
+{% endif %}
+
+
+
+</body>
+</html>

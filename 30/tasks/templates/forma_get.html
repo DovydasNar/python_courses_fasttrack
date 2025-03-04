@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paieska</title>
+</head>
+<body>
+<form action="/paieska" method="get">
+
+    <label for="query">Iveskite paieskos fraze:</label> <br> <br>
+    <input type="text" id="query" name="query" placeholder="Iveskite zodi" required> <br> <br>
+    <input type="submit" value="Submit">
+</form>
+
+{% if query %}
+     <p>Jus ieskojote: <strong>{{query}}</strong></p>
+
+{% endif %}
+</body>
+</html>
