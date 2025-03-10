@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darbuotoju sarasas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h3>Darbuotoju sarasas</h3>
+<div class="buttonContainer">
+    <a href="/" class="whiteButton">Grizti i pagrindini meniu</a>
+    <a href="/prideti-darbuotoja" class="whiteButton">Prideti nauja darbuotoja</a>
+</div>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Vardas</th>
+        <th>Pavarde</th>
+        <th>Pareigos</th>
+        <th>Darboviete</th>
+        <th>Veiksmai</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for darbuotojas in darbuotojai %}
+    <tr>
+        <td>{{darbuotojas.id}}</td>
+        <td>{{darbuotojas.vardas}}</td>
+        <td>{{darbuotojas.pavarde}}</td>
+        <td>{{darbuotojas.pareigos}}</td>
+        <td>{{darbuotojas.darboviete_id}} - {{darbuotojas.darboviete.pavadinimas}}</td>
+        <td>
+            <a href="{{ url_for('redaguoti_darbuotoja', id=darbuotojas.id) }}" class="buttonBlue" >Redaguoti</a>
+            <a href="{{ url_for('trinti_darbuotoja', id=darbuotojas.id) }}" class="buttonRed">Trinti</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

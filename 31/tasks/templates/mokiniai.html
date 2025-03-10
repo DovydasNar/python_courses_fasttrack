@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mokiniu sarasas</title>
+</head>
+<body>
+<h3>Mokiniai:</h3> <br> <br>
+
+<form action="/" method="GET">
+    <input type="text" name="search" placeholder="Ieskoti pagal varda" value="{{search_query}}">
+    <input type="submit" value="Ieskoti">
+</form>
+<br>
+<br>
+<a href="/prideti-mokini">Prideti nauja mokini</a>
+<br>
+<br>
+
+<ul>
+    {% if mokiniai %}
+        {% for mokinys in mokiniai %}
+            <li>
+                Mokinys: ID: {{mokinys.id}}. {{mokinys.vardas}} {{mokinys.pavarde}}, klase: {{mokinys.klase}} <br>
+                (Kitais metais mokinys eis i: {{mokinys.sekanti_klase}} klase.)
+
+            </li>
+        {% endfor %}
+    {% else %}
+       <li> Nera tokio mokinio. </li>
+    {% endif %}
+</ul>
+</body>
+</html>

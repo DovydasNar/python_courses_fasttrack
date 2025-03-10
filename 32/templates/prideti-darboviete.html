@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darbovietes pridejimas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h3>Naujos darbovietes pridejimas</h3>
+
+<form action="/prideti-darboviete" method="POST">
+    <label for="pavadinimas">Pavadinimas:</label>
+    <input type="text" id="pavadinimas" name="pavadinimas" required>
+    <label for="miestas">Iveskite miesta:</label>
+    <input type="text" id="miestas" name="miestas" required>
+    <button type="submit" class="buttonGreen">Prideti</button>
+</form>
+<div class="buttonContainer">
+    <a href="/" class="whiteButton">Grizti i pagrindini puslapi</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darboviečių sąrašas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h3>Darboviečių sąrašas</h3>
+<div class="buttonContainer"><a href="/prideti-darboviete" class="whiteButton">Prideti nauja darboviete</a>
+<a href="/darbuotojai" class="whiteButton">Perziureti darbuotojus</a>
+</div>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Pavadinimas</th>
+        <th>Miestas</th>
+        <th>Darbuotoju skaicius</th>
+        <th>Veiksmai</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for darboviete in darbovietes %}
+    <tr>
+        <td>{{darboviete.id}}</td>
+        <td>{{darboviete.pavadinimas}}</td>
+        <td>{{darboviete.miestas}}</td>
+        <td>{{darboviete.darbuotoju_skaicius}}</td>
+        <td>
+            <a href="{{url_for('trinti_darboviete', id=darboviete.id) }}" class="buttonRed">Trinti</a>
+            <a href="{{url_for('redaguoti_darboviete', id=darboviete.id)}}" class="buttonBlue">Redaguoti</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+</body>
+</html>

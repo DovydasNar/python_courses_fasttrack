@@ -38,3 +38,5 @@ def registracija():
 
 
 app.run()
+
+
