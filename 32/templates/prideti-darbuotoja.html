@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prideti darbuotoja</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h3>Prideti nauja darbuotoja</h3>
+<br><br>
+<form action="/prideti-darbuotoja" method="POST">
+  <label for="darboviete_id">Darbovietė</label>
+    <select id="darboviete_id" name="darboviete_id" required>
+        {% for darboviete in darbovietes %}
+            <option value="{{ darboviete.id }}">{{ darboviete.pavadinimas }}</option>
+        {% endfor %}
+    </select>
+    <label for="vardas">Vardas</label>
+    <input type="text" id="vardas" name="vardas" required>
+    <label for="pavarde">Pavarde</label>
+    <input type="text" id="pavarde" name="pavarde" required>
+    <label for="pareigos">Pareigos</label>
+    <input type="text" id="pareigos" name="pareigos" required>
+    <button type="submit" class="buttonGreen">Prideti</button>
+</form>
+<div class="buttonContainer">
+    <a href="/" class="whiteButton">Grizti i pagrindini puslapi</a>
+</div>
+</body>
+</html>
