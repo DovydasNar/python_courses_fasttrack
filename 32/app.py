@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
 
@@ -28,10 +28,11 @@ class Darbuotojas(db.Model):
     pareigos = db.Column(db.String(50), nullable=False)
     darboviete_id = db.Column(db.Integer, db.ForeignKey('darboviete.id'), nullable=False)
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'], endpoint='index')
 def rodyti_darbovietes():
     darbovietes = Darboviete.query.all()
-    return render_template('index.html', darbovietes=darbovietes)
+    klaida = request.args.get('klaida')
+    return render_template('index.html', darbovietes=darbovietes, klaida=klaida)
 
 @app.route('/darboviete/<int:id>', methods=['GET'])
 def rodyti_darboviete(id):
@@ -65,7 +66,7 @@ def redaguoti_darboviete(id):
 def trinti_darboviete(id):
     darboviete = Darboviete.query.get_or_404(id)
     if darboviete.darbuotojai:
-        return redirect('/')
+        return redirect(url_for('index', klaida='Negalite istrinti darbovietes, nes joje yra darbuotoju.'))
     db.session.delete(darboviete)
     db.session.commit()
     return redirect('/')

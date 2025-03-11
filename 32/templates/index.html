@@ -7,6 +7,9 @@
 </head>
 <body>
 <h3>Darboviečių sąrašas</h3>
+{% if klaida %}
+<p class="klaida">{{ klaida }}</p>
+{% endif %}
 <div class="buttonContainer"><a href="/prideti-darboviete" class="whiteButton">Prideti nauja darboviete</a>
 <a href="/darbuotojai" class="whiteButton">Perziureti darbuotojus</a>
 </div>
