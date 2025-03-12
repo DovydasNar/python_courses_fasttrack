@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staliukas {{table.number}}</title>
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                <li style="color: {% if category == 'success' %}green{% elif category == 'danger' %}red{% else %}black{% endif %};">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<h2>Staliukas {{ table.number }} vietu skaicius: {{table.num_of_seats}}</h2>
+<h3>Uzsakymai:</h3><br>
+<table border="1">
+    <tr>
+        <th>Uzsakymo aprasymas</th>
+        <th>Kaina</th>
+    </tr>
+    {% for order in table.orders %}
+    <tr>
+        <td>{{ order.order_description }}</td>
+        <td>{{ order.price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>Prideti nauja uzsakyma:</h3>
+<form action="/add-order/{{table.id}}" method="post">
+    <input type="text" name="order_description", id="order_description" placeholder="Uzsakymo aprasymas" required>
+    <input type="number" name="price" id="price" placeholder="Kaina" required>
+    <button type="submit">Uzsakyti</button>
+</form>
+<br><br>
+<a href="/">Grizti i pagrindini puslapi</a>
+</body>
+</html>

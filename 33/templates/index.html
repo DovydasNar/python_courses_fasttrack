@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staliukai</title>
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                <li style="color: {% if category == 'success' %}green{% elif category == 'danger' %}red{% else %}black{% endif %};">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<h2>Visi staliukai</h2>
+<form action="/add-table" method="post">
+  <input type="number" name="number" id="number" placeholder="Staliuko numeris">
+  <input type="number" name="num_of_seats" id="num_of_seats" placeholder="Vietu skaicius">
+  <button type="submit">Prideti staliuka</button>
+</form>
+<br><br>
+
+<table border="1">
+  <tr>
+    <th>Staliuko numeris</th>
+    <th>Vietu skaicius</th>
+    <th>Uzsakymu skaicius</th>
+    <th>Veiksmai</th>
+  </tr>
+  {% for table in tables %}
+    <tr>
+      <td>{{ table.number }}</td>
+      <td>{{ table.num_of_seats }}</td>
+      <td>{{ table.orders|length }}</td>
+      <td><a href="/table/{{ table.id }}">Perziureti</a>
+        <form action="delete-table/{{ table.id }}" method="post">
+          <button type="submit">Trinti</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
